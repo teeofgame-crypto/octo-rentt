@@ -1,0 +1,1472 @@
+Enter file contents here
+<!DOCTYPE html>
+<html lang="th" class="notranslate" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>OCTO.RENTT — Closet Rental</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-cream: #FAF6F0;
+            --card-cream: #FFFFFF;
+            --soft-rose: #F4E8E8;
+            --dusty-rose: #E2C4C4;
+            --warm-cinnamon: #8C4A3A;
+            --dark-chocolate: #4A2E2B;
+            --shadow-soft: 0 10px 30px rgba(140, 74, 58, 0.06);
+            --shadow-hover: 0 16px 35px rgba(140, 74, 58, 0.14);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: var(--bg-cream);
+            color: var(--dark-chocolate);
+            letter-spacing: 0.2px;
+            margin: 0;
+        }
+
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(226, 196, 196, 0.3);
+            padding: 16px 0;
+        }
+
+        .navbar-brand {
+            color: var(--warm-cinnamon) !important;
+            font-size: 1.6rem;
+            letter-spacing: 2px;
+        }
+
+        /* HERO */
+        .hero-banner {
+            background: linear-gradient(
+                135deg,
+                #FFF9F5 0%,
+                var(--soft-rose) 100%
+            );
+            border: 1px solid rgba(226, 196, 196, 0.4);
+            padding: 50px 20px;
+            border-radius: 28px;
+            margin-bottom: 35px;
+            text-align: center;
+            box-shadow: var(--shadow-soft);
+        }
+
+        /* BRAND TABS */
+        .nav-pills .nav-link {
+            color: var(--warm-cinnamon);
+            background-color: var(--card-cream);
+            border: 1px solid var(--dusty-rose);
+            border-radius: 25px;
+            padding: 8px 22px;
+            margin: 4px;
+            font-size: 0.88rem;
+            font-weight: 400;
+            transition: all 0.3s ease;
+        }
+
+        .nav-pills .nav-link.active,
+        .nav-pills .nav-link:hover {
+            background-color: var(--warm-cinnamon) !important;
+            color: #FFFFFF !important;
+            border-color: var(--warm-cinnamon);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(140, 74, 58, 0.2);
+        }
+
+        /* DRESS CARD */
+        .dress-card {
+            border: none;
+            border-radius: 22px;
+            background: var(--card-cream);
+            box-shadow: var(--shadow-soft);
+            transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .dress-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .dress-img-container {
+            position: relative;
+            height: 340px;
+            background-color: var(--soft-rose);
+            overflow: hidden;
+        }
+
+        .dress-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .dress-card:hover .dress-img {
+            transform: scale(1.05);
+        }
+
+        .brand-badge {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(4px);
+            color: var(--warm-cinnamon);
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            z-index: 2;
+        }
+
+        .img-count-badge {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            background: rgba(74, 46, 43, 0.6);
+            color: #ffffff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.72rem;
+            backdrop-filter: blur(4px);
+            z-index: 2;
+        }
+
+        .card-color-dot {
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            display: inline-block;
+            border: 1px solid rgba(0, 0, 0, 0.12);
+        }
+
+        /* MODAL */
+        .modal-content {
+            border-radius: 28px;
+            border: none;
+            background-color: var(--bg-cream);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .btn-close-custom {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            z-index: 1055;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            transition: all 0.2s ease;
+        }
+
+        .btn-close-custom:hover {
+            background: #FFFFFF;
+            transform: scale(1.1);
+        }
+
+        /* CAROUSEL */
+        .carousel-item {
+            background-color: var(--soft-rose);
+            border-radius: 18px;
+        }
+
+        .carousel-item img {
+            height: 420px;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 18px;
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            background-color: rgba(255, 255, 255, 0.85);
+            border-radius: 50%;
+            padding: 12px;
+            background-size: 45%;
+            filter: invert(1);
+        }
+
+        /* COLOR OPTIONS */
+        .color-option {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 14px;
+            border: 1.5px solid transparent;
+            border-radius: 14px;
+            cursor: pointer;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            background: var(--card-cream);
+            transition: all 0.2s ease;
+        }
+
+        .color-option.active {
+            border-color: var(--warm-cinnamon);
+            background: #FFF9F5;
+        }
+
+        .color-dot {
+            height: 16px;
+            width: 16px;
+            border-radius: 50%;
+            display: inline-block;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            margin-right: 8px;
+        }
+
+        /* SIZE */
+        .size-btn {
+            border: 1px solid var(--dusty-rose);
+            color: var(--dark-chocolate);
+            background: var(--card-cream);
+            padding: 6px 16px;
+            border-radius: 12px;
+            margin-right: 6px;
+            margin-bottom: 6px;
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
+        }
+
+        .size-btn.active,
+        .size-btn:hover {
+            background-color: var(--warm-cinnamon);
+            border-color: var(--warm-cinnamon);
+            color: #FFFFFF;
+        }
+
+        .size-detail-box {
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(226, 196, 196, 0.5);
+            border-radius: 16px;
+            padding: 12px 16px;
+            margin-top: 10px;
+        }
+
+        /* MOBILE */
+        @media (max-width: 767px) {
+            .navbar {
+                padding: 12px 0;
+            }
+
+            .navbar-brand {
+                font-size: 1.35rem;
+            }
+
+            .hero-banner {
+                padding: 35px 15px;
+                border-radius: 22px;
+            }
+
+            .hero-banner h1 {
+                font-size: 2rem !important;
+            }
+
+            .nav-pills {
+                justify-content: center;
+            }
+
+            .nav-pills .nav-link {
+                padding: 7px 13px;
+                font-size: 0.78rem;
+            }
+
+            .dress-img-container {
+                height: 250px;
+            }
+
+            .dress-card {
+                border-radius: 17px;
+            }
+
+            .card-body {
+                padding: 12px !important;
+            }
+
+            .carousel-item img {
+                height: 350px;
+            }
+
+            .modal-body {
+                padding: 18px !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .dress-img-container {
+                height: 220px;
+            }
+
+            .brand-badge {
+                top: 10px;
+                left: 10px;
+                padding: 3px 9px;
+                font-size: 0.68rem;
+            }
+
+            .img-count-badge {
+                top: 10px;
+                right: 10px;
+                padding: 3px 8px;
+            }
+
+            .nav-pills .nav-link {
+                padding: 6px 10px;
+                margin: 2px;
+            }
+        }
+    </style>
+</head>
+
+<body class="notranslate">
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+
+            <a class="navbar-brand font-serif fw-bold" href="#">
+                OCTO.RENTT
+            </a>
+
+            <div class="d-flex align-items-center gap-3">
+
+                <button
+                    class="btn btn-outline-danger position-relative border-0 bg-transparent"
+                    id="cartBtn"
+                    type="button"
+                    aria-label="รายการโปรด"
+                >
+                    <i
+                        class="fa-regular fa-heart fa-lg"
+                        style="color: var(--warm-cinnamon);"
+                    ></i>
+
+                    <span
+                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                        id="favCount"
+                    >
+                        0
+                    </span>
+                </button>
+
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- MAIN -->
+    <div class="container my-4">
+
+        <!-- HERO -->
+        <div class="hero-banner">
+
+            <h1
+                class="font-serif fw-bold mb-2"
+                style="font-size: 2.5rem; color: var(--dark-chocolate);"
+            >
+                OCTO.RENTT
+            </h1>
+
+            <p class="text-muted fw-light mb-0">
+                บริการเช่าชุดสวย ราคาน่ารัก ส่งตรงความมั่นใจถึงหน้าบ้านคุณ
+            </p>
+
+        </div>
+
+
+        <!-- BRAND FILTER -->
+        <div class="d-flex justify-content-center mb-4">
+
+            <ul
+                class="nav nav-pills"
+                id="brandTabs"
+            >
+
+                <li class="nav-item">
+                    <button
+                        class="nav-link active"
+                        onclick="filterBrand('all', this)"
+                    >
+                        All Collections
+                    </button>
+                </li>
+
+                <li class="nav-item">
+                    <button
+                        class="nav-link"
+                        onclick="filterBrand('Mist & Daisy', this)"
+                    >
+                        Mist & Daisy
+                    </button>
+                </li>
+
+                <li class="nav-item">
+                    <button
+                        class="nav-link"
+                        onclick="filterBrand('Rosy Posy', this)"
+                    >
+                        Rosy Posy
+                    </button>
+                </li>
+
+                <li class="nav-item">
+                    <button
+                        class="nav-link"
+                        onclick="filterBrand('Cinnamon Club', this)"
+                    >
+                        Cinnamon Club
+                    </button>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- GALLERY -->
+        <div
+            class="row g-4"
+            id="galleryGrid"
+        ></div>
+
+    </div>
+
+
+    <!-- DRESS MODAL -->
+    <div
+        class="modal fade"
+        id="dressModal"
+        tabindex="-1"
+        aria-hidden="true"
+    >
+
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+
+            <div class="modal-content p-2">
+
+                <button
+                    type="button"
+                    class="btn-close-custom"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                >
+                    <i
+                        class="fa-solid fa-xmark"
+                        style="color: var(--dark-chocolate);"
+                    ></i>
+                </button>
+
+
+                <div class="modal-body p-4 pt-4">
+
+                    <div class="row g-4">
+
+                        <!-- IMAGE -->
+                        <div class="col-md-6">
+
+                            <div
+                                id="dressCarousel"
+                                class="carousel slide"
+                                data-bs-ride="false"
+                            >
+
+                                <div
+                                    class="carousel-inner"
+                                    id="carouselInner"
+                                ></div>
+
+                                <button
+                                    class="carousel-control-prev"
+                                    type="button"
+                                    data-bs-target="#dressCarousel"
+                                    data-bs-slide="prev"
+                                >
+                                    <span class="carousel-control-prev-icon"></span>
+                                </button>
+
+                                <button
+                                    class="carousel-control-next"
+                                    type="button"
+                                    data-bs-target="#dressCarousel"
+                                    data-bs-slide="next"
+                                >
+                                    <span class="carousel-control-next-icon"></span>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- DETAILS -->
+                        <div class="col-md-6 d-flex flex-column justify-content-start">
+
+                            <span
+                                class="badge bg-light text-dark border align-self-start mb-2"
+                                id="modalBrand"
+                            >
+                                Brand
+                            </span>
+
+                            <h3
+                                class="font-serif fw-bold mb-2"
+                                id="modalTitle"
+                                style="color: var(--dark-chocolate);"
+                            >
+                                Dress Name
+                            </h3>
+
+                            <p
+                                class="text-muted small fw-light mb-3"
+                                id="modalDesc"
+                            >
+                                รายละเอียดชุด
+                            </p>
+
+
+                            <!-- COLORS -->
+                            <div class="mb-3">
+
+                                <label class="fw-medium d-block mb-2 text-muted small">
+                                    COLOR OPTIONS (กดเปลี่ยนสีเพื่อดูรูป):
+                                </label>
+
+                                <div
+                                    id="modalColors"
+                                    class="d-flex flex-wrap"
+                                ></div>
+
+                            </div>
+
+
+                            <!-- SIZES -->
+                            <div class="mb-3">
+
+                                <label class="fw-medium d-block mb-2 text-muted small">
+                                    SELECT SIZE (กดดูสัดส่วน):
+                                </label>
+
+                                <div
+                                    id="modalSizes"
+                                    class="d-flex flex-wrap"
+                                ></div>
+
+                                <div
+                                    id="sizeDetailBox"
+                                    class="size-detail-box"
+                                >
+                                    <small class="text-muted">
+                                        เลือกไซส์เพื่อดูขนาดสัดส่วน
+                                    </small>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- BOOTSTRAP -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <script>
+
+        /* =========================
+           FALLBACK IMAGE
+        ========================= */
+
+        const fallbackImg =
+            "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=600";
+
+
+        function handleImgError(image) {
+
+            image.onerror = null;
+            image.src = fallbackImg;
+
+        }
+
+
+        /* =========================
+           DRESS DATA
+        ========================= */
+
+        const dresses = [
+
+            {
+                id: 1,
+
+                name: "Floral Dream Mini Dress",
+
+                brand: "Mist & Daisy",
+
+                sizes: [
+                    {
+                        name: "S",
+                        chest: '32"',
+                        waist: '25"',
+                        hip: '35"',
+                        length: '31"'
+                    },
+                    {
+                        name: "M",
+                        chest: '34"',
+                        waist: '27"',
+                        hip: '37"',
+                        length: '32"'
+                    }
+                ],
+
+                colors: [
+
+                    {
+                        name: "ชมพูพาสเทล",
+                        hex: "#F4C2C2",
+
+                        images: [
+                            "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=600",
+                            "https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=600",
+                            "https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?auto=format&fit=crop&w=600"
+                        ]
+                    },
+
+                    {
+                        name: "ครีมเบจ",
+                        hex: "#F5EBE6",
+
+                        images: [
+                            "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=600",
+                            "https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=600",
+                            "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=600"
+                        ]
+                    }
+
+                ],
+
+                coverImage:
+                    "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=600",
+
+                desc:
+                    "มินิเดรสลายดอกไม้เล็กๆ เพิ่มลูกเล่นระบายช่วงแขน เหมาะกับการไปจิบชาหรือคาเฟ่สไตล์โฮมมี่"
+            },
+
+
+            {
+                id: 2,
+
+                name: "Vintage Ribbon Tiered Dress",
+
+                brand: "Rosy Posy",
+
+                sizes: [
+                    {
+                        name: "XS",
+                        chest: '30"',
+                        waist: '23"',
+                        hip: '33"',
+                        length: '40"'
+                    },
+                    {
+                        name: "S",
+                        chest: '32"',
+                        waist: '25"',
+                        hip: '35"',
+                        length: '41"'
+                    },
+                    {
+                        name: "M",
+                        chest: '34"',
+                        waist: '27"',
+                        hip: '37"',
+                        length: '42"'
+                    }
+                ],
+
+                colors: [
+
+                    {
+                        name: "น้ำตาลช็อกโกแลต",
+                        hex: "#8C4A3A",
+
+                        images: [
+                            "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=600",
+                            "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=600",
+                            "https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=600"
+                        ]
+                    },
+
+                    {
+                        name: "โรสโกลด์",
+                        hex: "#E2C4C4",
+
+                        images: [
+                            "https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=600",
+                            "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=600",
+                            "https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?auto=format&fit=crop&w=600"
+                        ]
+                    }
+
+                ],
+
+                coverImage:
+                    "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=600",
+
+                desc:
+                    "ชุดเดรสยาวชั้นๆ สไตล์วินเทจ ประดับโบว์ผูกหลัง ให้ลุคหวานซ่อนเปรี้ยวอย่างลงตัว"
+            },
+
+
+            {
+                id: 3,
+
+                name: "Cinnamon Puff Sleeve Dress",
+
+                brand: "Cinnamon Club",
+
+                sizes: [
+                    {
+                        name: "S",
+                        chest: '32"',
+                        waist: '26"',
+                        hip: '36"',
+                        length: '33"'
+                    },
+                    {
+                        name: "M",
+                        chest: '34"',
+                        waist: '28"',
+                        hip: '38"',
+                        length: '34"'
+                    }
+                ],
+
+                colors: [
+
+                    {
+                        name: "ครีมนม",
+                        hex: "#FFFDD0",
+
+                        images: [
+                            "https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=600",
+                            "https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=600",
+                            "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=600"
+                        ]
+                    },
+
+                    {
+                        name: "ชามุก",
+                        hex: "#D4A373",
+
+                        images: [
+                            "https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?auto=format&fit=crop&w=600",
+                            "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=600",
+                            "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=600"
+                        ]
+                    }
+
+                ],
+
+                coverImage:
+                    "https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=600",
+
+                desc:
+                    "เดรสแขนพองสไตล์ลูกคุณหนู ผ้าพริ้วไหวใส่สบาย แต่งกระดุมมุกด้านหน้า"
+            }
+
+        ];
+
+
+        /* =========================
+           VARIABLES
+        ========================= */
+
+        let favorites = [];
+
+        let dressModalInstance = null;
+
+        let carouselInstance = null;
+
+        let currentDress = null;
+
+
+        /* =========================
+           RENDER GALLERY
+        ========================= */
+
+        function renderGallery(items) {
+
+            const grid =
+                document.getElementById("galleryGrid");
+
+            grid.innerHTML = "";
+
+
+            items.forEach(item => {
+
+                const isFav =
+                    favorites.includes(item.id);
+
+
+                const totalImages =
+                    item.colors.reduce(
+                        (sum, color) =>
+                            sum + color.images.length,
+                        0
+                    );
+
+
+                const colorDotsHTML =
+                    item.colors.map(color => `
+                        <span
+                            class="card-color-dot"
+                            style="background-color: ${color.hex};"
+                            title="${color.name}"
+                        ></span>
+                    `).join(" ");
+
+
+                const sizeHTML =
+                    item.sizes.map(size => `
+                        <span class="badge bg-light text-dark border me-1">
+                            ${size.name}
+                        </span>
+                    `).join("");
+
+
+                const cardHTML = `
+
+                    <div class="col-6 col-md-4">
+
+                        <div
+                            class="card dress-card h-100"
+                            onclick="openModal(${item.id})"
+                        >
+
+                            <div class="dress-img-container">
+
+                                <span class="brand-badge">
+                                    ${item.brand}
+                                </span>
+
+                                <span class="img-count-badge">
+
+                                    <i class="fa-regular fa-images me-1"></i>
+
+                                    ${totalImages}
+
+                                </span>
+
+                                <img
+                                    src="${item.coverImage}"
+                                    class="dress-img"
+                                    alt="${item.name}"
+                                    onerror="handleImgError(this)"
+                                >
+
+                            </div>
+
+
+                            <div class="card-body d-flex flex-column justify-content-between p-3">
+
+                                <div>
+
+                                    <h6
+                                        class="font-serif fw-bold mb-1 text-truncate"
+                                        style="color: var(--dark-chocolate);"
+                                    >
+                                        ${item.name}
+                                    </h6>
+
+
+                                    <div class="d-flex align-items-center gap-1 my-2">
+
+                                        ${colorDotsHTML}
+
+                                        <small
+                                            class="text-muted ms-1"
+                                            style="font-size: 0.75rem;"
+                                        >
+                                            (${item.colors.length} สี)
+                                        </small>
+
+                                    </div>
+
+
+                                    <p class="text-muted small mb-0">
+                                        ${sizeHTML}
+                                    </p>
+
+                                </div>
+
+
+                                <div class="d-flex justify-content-end align-items-center mt-2">
+
+                                    <button
+                                        class="btn btn-sm border-0 bg-transparent p-0"
+                                        onclick="toggleFav(event, ${item.id})"
+                                        aria-label="เพิ่มรายการโปรด"
+                                    >
+
+                                        <i
+                                            class="${
+                                                isFav
+                                                    ? "fa-solid text-danger"
+                                                    : "fa-regular"
+                                            } fa-heart"
+                                        ></i>
+
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+
+                grid.insertAdjacentHTML(
+                    "beforeend",
+                    cardHTML
+                );
+
+            });
+
+        }
+
+
+        /* =========================
+           FILTER BRAND
+        ========================= */
+
+        function filterBrand(brandName, btnElement) {
+
+            document
+                .querySelectorAll("#brandTabs .nav-link")
+                .forEach(btn => {
+                    btn.classList.remove("active");
+                });
+
+
+            if (btnElement) {
+                btnElement.classList.add("active");
+            }
+
+
+            if (brandName === "all") {
+
+                renderGallery(dresses);
+
+            } else {
+
+                const filtered =
+                    dresses.filter(
+                        dress =>
+                            dress.brand === brandName
+                    );
+
+                renderGallery(filtered);
+
+            }
+
+        }
+
+
+        /* =========================
+           OPEN MODAL
+        ========================= */
+
+        function openModal(id) {
+
+            const dress =
+                dresses.find(
+                    dress => dress.id === id
+                );
+
+
+            if (!dress) return;
+
+
+            currentDress = dress;
+
+
+            document.getElementById("modalBrand")
+                .innerText = dress.brand;
+
+
+            document.getElementById("modalTitle")
+                .innerText = dress.name;
+
+
+            document.getElementById("modalDesc")
+                .innerText = dress.desc;
+
+
+            /* CAROUSEL */
+
+            const carouselInner =
+                document.getElementById("carouselInner");
+
+            carouselInner.innerHTML = "";
+
+
+            let slideIndex = 0;
+
+
+            dress.colors.forEach(colorObj => {
+
+                colorObj.images.forEach(imgUrl => {
+
+                    const itemDiv =
+                        document.createElement("div");
+
+
+                    itemDiv.className =
+                        `carousel-item ${
+                            slideIndex === 0
+                                ? "active"
+                                : ""
+                        }`;
+
+
+                    itemDiv.innerHTML = `
+
+                        <img
+                            src="${imgUrl}"
+                            class="d-block w-100"
+                            alt="${colorObj.name}"
+                            onerror="handleImgError(this)"
+                        >
+
+                    `;
+
+
+                    carouselInner.appendChild(
+                        itemDiv
+                    );
+
+
+                    slideIndex++;
+
+                });
+
+            });
+
+
+            const carouselEl =
+                document.getElementById("dressCarousel");
+
+
+            if (carouselInstance) {
+
+                carouselInstance.dispose();
+
+            }
+
+
+            carouselInstance =
+                new bootstrap.Carousel(
+                    carouselEl,
+                    {
+                        interval: false
+                    }
+                );
+
+
+            /* COLORS */
+
+            const colorContainer =
+                document.getElementById("modalColors");
+
+
+            let imageStartIndex = 0;
+
+
+            colorContainer.innerHTML =
+                dress.colors.map(
+                    (color, index) => {
+
+                        const startSlideIndex =
+                            imageStartIndex;
+
+
+                        imageStartIndex +=
+                            color.images.length;
+
+
+                        return `
+
+                            <div
+                                class="color-option ${
+                                    index === 0
+                                        ? "active"
+                                        : ""
+                                }"
+                                onclick="selectColor(${startSlideIndex}, this)"
+                            >
+
+                                <span
+                                    class="color-dot"
+                                    style="background-color: ${color.hex};"
+                                ></span>
+
+                                <small class="fw-medium">
+                                    ${color.name}
+                                </small>
+
+                            </div>
+
+                        `;
+
+                    }
+                ).join("");
+
+
+            /* SIZES */
+
+            const sizeContainer =
+                document.getElementById("modalSizes");
+
+
+            sizeContainer.innerHTML =
+                dress.sizes.map(
+                    (size, index) => `
+
+                        <button
+                            class="size-btn ${
+                                index === 0
+                                    ? "active"
+                                    : ""
+                            }"
+                            onclick="selectSize(
+                                ${id},
+                                '${size.name}',
+                                this
+                            )"
+                        >
+                            ${size.name}
+                        </button>
+
+                    `
+                ).join("");
+
+
+            /* FIRST SIZE */
+
+            if (dress.sizes.length > 0) {
+
+                showSizeDetails(
+                    dress.sizes[0]
+                );
+
+            }
+
+
+            /* SHOW MODAL */
+
+            if (!dressModalInstance) {
+
+                dressModalInstance =
+                    new bootstrap.Modal(
+                        document.getElementById(
+                            "dressModal"
+                        )
+                    );
+
+            }
+
+
+            dressModalInstance.show();
+
+        }
+
+
+        /* =========================
+           SELECT COLOR
+        ========================= */
+
+        function selectColor(
+            slideIndex,
+            element
+        ) {
+
+            document
+                .querySelectorAll(".color-option")
+                .forEach(option => {
+                    option.classList.remove("active");
+                });
+
+
+            element.classList.add("active");
+
+
+            if (carouselInstance) {
+
+                carouselInstance.to(
+                    slideIndex
+                );
+
+            }
+
+        }
+
+
+        /* =========================
+           SELECT SIZE
+        ========================= */
+
+        function selectSize(
+            dressId,
+            sizeName,
+            btnElement
+        ) {
+
+            document
+                .querySelectorAll(".size-btn")
+                .forEach(btn => {
+                    btn.classList.remove("active");
+                });
+
+
+            btnElement.classList.add("active");
+
+
+            const dress =
+                dresses.find(
+                    item => item.id === dressId
+                );
+
+
+            if (!dress) return;
+
+
+            const selectedSize =
+                dress.sizes.find(
+                    size =>
+                        size.name === sizeName
+                );
+
+
+            if (selectedSize) {
+
+                showSizeDetails(
+                    selectedSize
+                );
+
+            }
+
+        }
+
+
+        /* =========================
+           SIZE DETAILS
+        ========================= */
+
+        function showSizeDetails(sizeObj) {
+
+            const box =
+                document.getElementById(
+                    "sizeDetailBox"
+                );
+
+
+            box.innerHTML = `
+
+                <div class="row text-center g-2">
+
+                    <div class="col-3">
+
+                        <small
+                            class="text-muted d-block"
+                            style="font-size:0.75rem;"
+                        >
+                            อก
+                        </small>
+
+                        <span
+                            class="fw-semibold"
+                            style="color: var(--warm-cinnamon);"
+                        >
+                            ${sizeObj.chest}
+                        </span>
+
+                    </div>
+
+
+                    <div class="col-3">
+
+                        <small
+                            class="text-muted d-block"
+                            style="font-size:0.75rem;"
+                        >
+                            เอว
+                        </small>
+
+                        <span
+                            class="fw-semibold"
+                            style="color: var(--warm-cinnamon);"
+                        >
+                            ${sizeObj.waist}
+                        </span>
+
+                    </div>
+
+
+                    <div class="col-3">
+
+                        <small
+                            class="text-muted d-block"
+                            style="font-size:0.75rem;"
+                        >
+                            สะโพก
+                        </small>
+
+                        <span
+                            class="fw-semibold"
+                            style="color: var(--warm-cinnamon);"
+                        >
+                            ${sizeObj.hip}
+                        </span>
+
+                    </div>
+
+
+                    <div class="col-3">
+
+                        <small
+                            class="text-muted d-block"
+                            style="font-size:0.75rem;"
+                        >
+                            ยาว
+                        </small>
+
+                        <span
+                            class="fw-semibold"
+                            style="color: var(--warm-cinnamon);"
+                        >
+                            ${sizeObj.length}
+                        </span>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+
+
+        /* =========================
+           FAVORITES
+        ========================= */
+
+        function toggleFav(event, id) {
+
+            event.stopPropagation();
+
+
+            const index =
+                favorites.indexOf(id);
+
+
+            if (index > -1) {
+
+                favorites.splice(
+                    index,
+                    1
+                );
+
+            } else {
+
+                favorites.push(id);
+
+            }
+
+
+            document.getElementById(
+                "favCount"
+            ).innerText =
+                favorites.length;
+
+
+            const activeTab =
+                document.querySelector(
+                    "#brandTabs .nav-link.active"
+                );
+
+
+            const currentBrand =
+                activeTab &&
+                activeTab.innerText !==
+                    "All Collections"
+                    ? activeTab.innerText
+                    : "all";
+
+
+            filterBrand(
+                currentBrand,
+                activeTab
+            );
+
+        }
+
+
+        /* =========================
+           INITIALIZE
+        ========================= */
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            () => {
+
+                renderGallery(
+                    dresses
+                );
+
+            }
+        );
+
+    </script>
+
+</body>
+</html>

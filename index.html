@@ -194,15 +194,6 @@
             filter: invert(1);
         }
 
-        .color-option {
-            display: inline-flex;
-            align-items: center;
-            padding: 6px 14px;
-            border: 1.5px solid var(--warm-cinnamon);
-            border-radius: 14px;
-            background: #FFF9F5;
-        }
-
         .size-btn {
             border: 1px solid var(--warm-cinnamon);
             color: #FFFFFF;
@@ -306,12 +297,6 @@
                             <h3 class="font-serif fw-bold mb-2" id="modalTitle" style="color: var(--dark-chocolate);">Dress Name</h3>
                             <p class="text-muted small fw-light mb-3" id="modalDesc">รายละเอียดชุด</p>
 
-                            <!-- COLOR -->
-                            <div class="mb-3">
-                                <label class="fw-medium d-block mb-2 text-muted small">COLOR:</label>
-                                <div id="modalColors" class="d-flex flex-wrap"></div>
-                            </div>
-
                             <!-- SIZE -->
                             <div class="mb-3">
                                 <label class="fw-medium d-block mb-2 text-muted small">SIZE & MEASUREMENTS:</label>
@@ -336,9 +321,6 @@
             image.src = fallbackImg;
         }
 
-        // ==========================================
-        // 📌 จุดแก้ไขข้อมูลและรูปภาพของทุกชุดในร้าน
-        // ==========================================
         const dresses = [
             { 
                 id: 1, 
@@ -626,14 +608,6 @@
                 `;
                 carouselInner.insertAdjacentHTML("beforeend", carouselItem);
             });
-
-            const colorContainer = document.getElementById("modalColors");
-            colorContainer.innerHTML = `
-                <div class="color-option">
-                    <span class="rounded-circle d-inline-block me-2" style="width: 14px; height: 14px; background-color: ${item.color.hex}; border: 1px solid #ddd;"></span>
-                    <span class="small fw-medium">${item.color.name}</span>
-                </div>
-            `;
 
             const sizeContainer = document.getElementById("modalSizes");
             sizeContainer.innerHTML = `<span class="size-btn">${item.size.name}</span>`;
